@@ -36,15 +36,16 @@ for i in leaders :
         currentLine = item['text']                  
         words = currentLine.split()
 
-        for w in words :             
-            wC = w.strip(',')
-            wC1 = wC.strip('.')                     # Clean hashtags which have a full-stop or comma at the end
-            wC2 = wC1.strip()
-                
-            if wC2 not in hashDict:         
-                hashDict[wC2] = 1                   # Add to dictionary if hashtag does not exist in it
-            else:
-                hashDict[wC2] = hashDict[wC2] + 1
+        for w in words :
+            if w.startswith('#'):
+                wC = w.strip(',')
+                wC1 = wC.strip('.')                     # Clean hashtags which have a full-stop or comma at the end
+                wC2 = wC1.strip()
+                    
+                if wC2 not in hashDict:         
+                    hashDict[wC2] = 1                   # Add to dictionary if hashtag does not exist in it
+                else:
+                    hashDict[wC2] = hashDict[wC2] + 1
 
     print '====================================================================='
     print '\t\t\t'+str(i)
